@@ -1,16 +1,41 @@
-# notes_app
+# 📝 Notes App (Flutter)
 
-A new Flutter project.
+A modern, feature rich Notes application built with Flutter.  
+Designed to be fast, clean, and cross-platform.
 
-## Getting Started
+This project is part of my Flutter portfolio and demonstrates real-world app architecture, state management, and platform-aware features.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## ✨ Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Create, edit, and organize notes  
+- Folders (collections)  
+- Tags & labels  
+- Favorites  
+- Recycle bin (restore or delete forever)  
+- PIN-locked notes  
+- Color coded notes  
+- Search, sort, and filter  
+- Light & Dark mode  
+- Export notes as text (all platforms)  
+- Export notes as PDF (Android & iOS only)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 🧰 Tech Stack
+
+- Flutter  
+- Dart  
+- Material 3  
+- SharedPreferences (local storage)
+
+---
+
+## 🚀 Getting Started
+
+Clone the repo:
+
+```bash
+git clone https://github.com/Emma005991/notes_app.git
+cd notes_app

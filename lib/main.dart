@@ -52,9 +52,7 @@ class _NotesAppState extends State<NotesApp> {
   Widget build(BuildContext context) {
     if (!_loaded) {
       return const MaterialApp(
-        home: Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        ),
+        home: Scaffold(body: Center(child: CircularProgressIndicator())),
       );
     }
 
@@ -71,10 +69,7 @@ class _NotesAppState extends State<NotesApp> {
         colorSchemeSeed: Colors.amber,
         useMaterial3: true,
       ),
-      home: NotesHomePage(
-        isDarkMode: _isDarkMode,
-        onToggleTheme: _toggleTheme,
-      ),
+      home: NotesHomePage(isDarkMode: _isDarkMode, onToggleTheme: _toggleTheme),
     );
   }
 }
@@ -297,10 +292,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
       }
     }
     if (_folders.isEmpty && notes.isNotEmpty) {
-      _folders = notes
-          .map((n) => n.folder)
-          .toSet()
-          .toList()
+      _folders = notes.map((n) => n.folder).toSet().toList()
         ..sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
     }
 
@@ -376,9 +368,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
       builder: (_) => AlertDialog(
         title: const Text("Move to New Folder"),
         content: TextField(
-          decoration: const InputDecoration(
-            hintText: "Folder name",
-          ),
+          decoration: const InputDecoration(hintText: "Folder name"),
           onChanged: (v) => input = v,
         ),
         actions: [
@@ -497,10 +487,12 @@ class _NotesHomePageState extends State<NotesHomePage> {
     } else if (_filterBy == "today") {
       final now = DateTime.now();
       list = list
-          .where((n) =>
-              n.createdAt.year == now.year &&
-              n.createdAt.month == now.month &&
-              n.createdAt.day == now.day)
+          .where(
+            (n) =>
+                n.createdAt.year == now.year &&
+                n.createdAt.month == now.month &&
+                n.createdAt.day == now.day,
+          )
           .toList();
     }
 
@@ -534,8 +526,10 @@ class _NotesHomePageState extends State<NotesHomePage> {
                   children: [
                     const Text(
                       "Sort By",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     RadioListTile(
                       title: const Text("Newest"),
@@ -618,8 +612,10 @@ class _NotesHomePageState extends State<NotesHomePage> {
                     const SizedBox(height: 20),
                     const Text(
                       "Filter By",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     RadioListTile(
                       title: const Text("None"),
@@ -668,8 +664,10 @@ class _NotesHomePageState extends State<NotesHomePage> {
                     const SizedBox(height: 20),
                     const Text(
                       "Filter by Color",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Wrap(
@@ -690,7 +688,9 @@ class _NotesHomePageState extends State<NotesHomePage> {
                       const Text(
                         "Filter by Tag",
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       const SizedBox(height: 8),
                       Wrap(
@@ -707,7 +707,9 @@ class _NotesHomePageState extends State<NotesHomePage> {
                             },
                             child: Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 6),
+                                horizontal: 10,
+                                vertical: 6,
+                              ),
                               decoration: BoxDecoration(
                                 color: selected
                                     ? Colors.amber.withOpacity(0.3)
@@ -763,9 +765,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
           maxLength: 4,
           keyboardType: TextInputType.number,
           obscureText: true,
-          decoration: const InputDecoration(
-            hintText: "Enter PIN",
-          ),
+          decoration: const InputDecoration(hintText: "Enter PIN"),
           onChanged: (v) => input = v,
         ),
         actions: [
@@ -800,9 +800,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
           maxLength: 4,
           keyboardType: TextInputType.number,
           obscureText: true,
-          decoration: const InputDecoration(
-            hintText: "Enter PIN",
-          ),
+          decoration: const InputDecoration(hintText: "Enter PIN"),
           onChanged: (v) => input = v,
         ),
         actions: [
@@ -864,9 +862,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
   Future<void> _edit(Note note) async {
     final result = await Navigator.push<Note>(
       context,
-      MaterialPageRoute(
-        builder: (_) => EditNotePage(note: note, isNew: false),
-      ),
+      MaterialPageRoute(builder: (_) => EditNotePage(note: note, isNew: false)),
     );
 
     if (result != null) {
@@ -917,10 +913,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => FavoritesPage(
-          favorites: favs,
-          onOpen: _edit,
-        ),
+        builder: (_) => FavoritesPage(favorites: favs, onOpen: _edit),
       ),
     );
   }
@@ -943,9 +936,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
       context: context,
       builder: (_) => SafeArea(
         child: ListTile(
-          leading: Icon(
-            widget.isDarkMode ? Icons.dark_mode : Icons.light_mode,
-          ),
+          leading: Icon(widget.isDarkMode ? Icons.dark_mode : Icons.light_mode),
           title: const Text("Dark Mode"),
           trailing: Switch(
             value: widget.isDarkMode,
@@ -982,8 +973,10 @@ class _NotesHomePageState extends State<NotesHomePage> {
                   children: [
                     Text(
                       "My Notes",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     SizedBox(height: 8),
                     Text("Quick navigation"),
@@ -1071,10 +1064,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
                     "Labels",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                   ),
                 ),
                 ...allTags.map((tag) {
@@ -1134,10 +1124,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
             onPressed: () {
               showSearch(
                 context: context,
-                delegate: NotesSearchDelegate(
-                  notes: notes,
-                  onOpen: _edit,
-                ),
+                delegate: NotesSearchDelegate(notes: notes, onOpen: _edit),
               );
             },
           ),
@@ -1145,10 +1132,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
             icon: const Icon(Icons.filter_list),
             onPressed: _openSortFilterSheet,
           ),
-          IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: _openTrashPage,
-          ),
+          IconButton(icon: const Icon(Icons.delete), onPressed: _openTrashPage),
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: _openSettingsSheet,
@@ -1159,132 +1143,121 @@ class _NotesHomePageState extends State<NotesHomePage> {
       body: loading
           ? const Center(child: CircularProgressIndicator())
           : shownNotes.isEmpty
-              ? const Center(child: Text("No notes yet"))
-              : ListView.builder(
-                  itemCount: shownNotes.length,
-                  itemBuilder: (_, i) {
-                    final note = shownNotes[i];
+          ? const Center(child: Text("No notes yet"))
+          : ListView.builder(
+              itemCount: shownNotes.length,
+              itemBuilder: (_, i) {
+                final note = shownNotes[i];
 
-                    return Container(
-                      margin: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: Color(note.colorValue),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: ListTile(
-                        title: Text(
-                          note.isLocked
-                              ? "🔒 Locked Note"
-                              : (note.title.isEmpty
-                                  ? "(No title)"
-                                  : note.title),
+                return Container(
+                  margin: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Color(note.colorValue),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      note.isLocked
+                          ? "🔒 Locked Note"
+                          : (note.title.isEmpty ? "(No title)" : note.title),
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          note.isLocked ? "This note is locked" : note.content,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        const SizedBox(height: 4),
+                        Row(
                           children: [
+                            Icon(
+                              Icons.folder,
+                              size: 14,
+                              color: Colors.black.withOpacity(0.5),
+                            ),
+                            const SizedBox(width: 4),
                             Text(
-                              note.isLocked
-                                  ? "This note is locked"
-                                  : note.content,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            const SizedBox(height: 4),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.folder,
-                                  size: 14,
-                                  color: Colors.black.withOpacity(0.5),
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  note.folder,
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    color:
-                                        Colors.black.withOpacity(0.6),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            if (note.tags.isNotEmpty) ...[
-                              const SizedBox(height: 4),
-                              Wrap(
-                                spacing: 6,
-                                runSpacing: 2,
-                                children: note.tags.map((tag) {
-                                  return Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                      vertical: 3,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.05),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Text(
-                                      "#$tag",
-                                      style: const TextStyle(fontSize: 11),
-                                    ),
-                                  );
-                                }).toList(),
+                              note.folder,
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.black.withOpacity(0.6),
                               ),
-                            ],
-                          ],
-                        ),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              icon: Icon(
-                                note.isFavorite
-                                    ? Icons.star
-                                    : Icons.star_border,
-                                color: note.isFavorite ? Colors.amber : null,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  note.isFavorite = !note.isFavorite;
-                                  _applySorting();
-                                });
-                                repo.saveNotes(notes);
-                              },
-                            ),
-                            IconButton(
-                              icon: Icon(
-                                note.isLocked
-                                    ? Icons.lock
-                                    : Icons.lock_open,
-                                color: note.isLocked ? Colors.red : null,
-                              ),
-                              onPressed: () => _toggleLock(note),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.delete_outline),
-                              onPressed: () => _moveToTrash(note),
                             ),
                           ],
                         ),
-                        onTap: () async {
-                          if (note.isLocked) {
-                            final ok = await _askPin();
-                            if (!ok) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("Incorrect PIN"),
+                        if (note.tags.isNotEmpty) ...[
+                          const SizedBox(height: 4),
+                          Wrap(
+                            spacing: 6,
+                            runSpacing: 2,
+                            children: note.tags.map((tag) {
+                              return Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 3,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.05),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Text(
+                                  "#$tag",
+                                  style: const TextStyle(fontSize: 11),
                                 ),
                               );
-                              return;
-                            }
-                          }
-                          _edit(note);
-                        },
-                        onLongPress: () => _openMoveToFolder(note),
-                      ),
-                    );
-                  },
-                ),
+                            }).toList(),
+                          ),
+                        ],
+                      ],
+                    ),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            note.isFavorite ? Icons.star : Icons.star_border,
+                            color: note.isFavorite ? Colors.amber : null,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              note.isFavorite = !note.isFavorite;
+                              _applySorting();
+                            });
+                            repo.saveNotes(notes);
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            note.isLocked ? Icons.lock : Icons.lock_open,
+                            color: note.isLocked ? Colors.red : null,
+                          ),
+                          onPressed: () => _toggleLock(note),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete_outline),
+                          onPressed: () => _moveToTrash(note),
+                        ),
+                      ],
+                    ),
+                    onTap: () async {
+                      if (note.isLocked) {
+                        final ok = await _askPin();
+                        if (!ok) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text("Incorrect PIN")),
+                          );
+                          return;
+                        }
+                      }
+                      _edit(note);
+                    },
+                    onLongPress: () => _openMoveToFolder(note),
+                  ),
+                );
+              },
+            ),
 
       floatingActionButton: FloatingActionButton(
         onPressed: _addNote,
@@ -1299,11 +1272,7 @@ class EditNotePage extends StatefulWidget {
   final Note note;
   final bool isNew;
 
-  const EditNotePage({
-    super.key,
-    required this.note,
-    required this.isNew,
-  });
+  const EditNotePage({super.key, required this.note, required this.isNew});
 
   @override
   State<EditNotePage> createState() => _EditNotePageState();
@@ -1342,8 +1311,9 @@ class _EditNotePageState extends State<EditNotePage> {
 
   // --------- EXPORT AS TEXT ---------
   void _exportAsTxt() {
-    final title =
-        _title.text.trim().isEmpty ? 'Untitled Note' : _title.text.trim();
+    final title = _title.text.trim().isEmpty
+        ? 'Untitled Note'
+        : _title.text.trim();
     final content = _content.text.trim();
 
     final buffer = StringBuffer()
@@ -1351,16 +1321,14 @@ class _EditNotePageState extends State<EditNotePage> {
       ..writeln()
       ..writeln(content);
 
-    Share.share(
-      buffer.toString(),
-      subject: title,
-    );
+    Share.share(buffer.toString(), subject: title);
   }
 
   // --------- EXPORT AS PDF ---------
   Future<void> _exportAsPdf() async {
-    final title =
-        _title.text.trim().isEmpty ? 'Untitled Note' : _title.text.trim();
+    final title = _title.text.trim().isEmpty
+        ? 'Untitled Note'
+        : _title.text.trim();
     final content = _content.text.trim();
 
     final doc = pw.Document();
@@ -1371,10 +1339,7 @@ class _EditNotePageState extends State<EditNotePage> {
           children: [
             pw.Text(
               title,
-              style: pw.TextStyle(
-                fontSize: 24,
-                fontWeight: pw.FontWeight.bold,
-              ),
+              style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold),
             ),
             pw.SizedBox(height: 16),
             pw.Text(content),
@@ -1397,9 +1362,7 @@ class _EditNotePageState extends State<EditNotePage> {
       builder: (_) => AlertDialog(
         title: const Text("Add Tag"),
         content: TextField(
-          decoration: const InputDecoration(
-            hintText: "e.g. work, anime, web3",
-          ),
+          decoration: const InputDecoration(hintText: "e.g. work, anime, web3"),
           onChanged: (v) => input = v,
         ),
         actions: [
@@ -1449,8 +1412,7 @@ class _EditNotePageState extends State<EditNotePage> {
         decoration: BoxDecoration(
           color: color,
           shape: BoxShape.circle,
-          border:
-              selected ? Border.all(color: Colors.black, width: 2) : null,
+          border: selected ? Border.all(color: Colors.black, width: 2) : null,
         ),
       ),
     );
@@ -1474,10 +1436,7 @@ class _EditNotePageState extends State<EditNotePage> {
             tooltip: 'Export as PDF',
             onPressed: _exportAsPdf,
           ),
-          IconButton(
-            icon: const Icon(Icons.check),
-            onPressed: _save,
-          ),
+          IconButton(icon: const Icon(Icons.check), onPressed: _save),
         ],
       ),
 
@@ -1491,10 +1450,7 @@ class _EditNotePageState extends State<EditNotePage> {
                 hintText: "Title",
                 border: InputBorder.none,
               ),
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
 
             // COLORS
@@ -1541,10 +1497,7 @@ class _EditNotePageState extends State<EditNotePage> {
               children: [
                 const Text(
                   "Tags",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
                 TextButton.icon(
                   onPressed: _addTag,
