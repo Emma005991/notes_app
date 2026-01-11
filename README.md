@@ -3,7 +3,7 @@
 A modern, feature rich Notes application built with Flutter.  
 Designed to be fast, clean, and cross-platform.
 
-This project is part of my Flutter portfolio and demonstrates real-world app architecture, state management, and platform-aware features.
+This project is part of my Flutter portfolio and demonstrates real world app architecture, state management, and platform aware features.
 
 ---
 
