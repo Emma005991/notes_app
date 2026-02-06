@@ -13,7 +13,7 @@ This project is part of my Flutter portfolio and demonstrates real world app arc
 - Tags & labels  
 - Favorites  
 - Recycle bin (restore or delete forever)  
-- PIN-locked notes  
+- PIN locked notes  
 - Color coded notes  
 - Search, sort, and filter  
 - Light & Dark mode  
